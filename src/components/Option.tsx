@@ -1,0 +1,216 @@
+function Option({
+    bgColor = "#4078BF",
+    borderColor = "#f8f8f8",
+}: {
+    bgColor?: string;
+    borderColor?: string;
+}) {
+    return (
+        <>
+            <svg
+                width="721"
+                height="233"
+                viewBox="0 0 721 233"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+                <g filter="url(#filter0_d_1_129)">
+                    <rect
+                        width="304.476"
+                        height="137.792"
+                        transform="matrix(1 0 0.562493 0.826802 260.632 0.0010376)"
+                        className="answer-btn__border-svg"
+                        fill={borderColor}
+                    />
+                </g>
+                <g filter="url(#filter1_d_1_129)">
+                    <rect
+                        width="304.476"
+                        height="137.792"
+                        transform="matrix(1 0 -0.562491 0.826803 338.139 110.992)"
+                        className="answer-btn__border-svg"
+                        fill={borderColor}
+                    />
+                </g>
+                <g filter="url(#filter2_d_1_129)">
+                    <rect
+                        width="304.476"
+                        height="137.792"
+                        transform="matrix(-1 0 -0.562492 -0.826803 462.365 224.918)"
+                        className="answer-btn__border-svg"
+                        fill={borderColor}
+                    />
+                </g>
+                <rect
+                    width="304.476"
+                    height="137.792"
+                    transform="matrix(-1 0 0.562491 -0.826803 384.858 113.927)"
+                    className="answer-btn__border-svg"
+                    fill={borderColor}
+                />
+                <rect
+                    y="103.831"
+                    width="87.6892"
+                    height="17.9019"
+                    className="answer-btn__border-svg"
+                    fill={borderColor}
+                />
+                <rect
+                    x="633.311"
+                    y="103.831"
+                    width="87.6892"
+                    height="17.9019"
+                    className="answer-btn__border-svg"
+                    fill={borderColor}
+                />
+                <rect
+                    width="289.373"
+                    height="127.243"
+                    transform="matrix(0.999998 -0.00191795 0.579916 0.814279 266.055 9.34689)"
+                    className="answer-btn__bg-svg"
+                    fill={bgColor}
+                />
+                <rect
+                    width="289.373"
+                    height="127.243"
+                    transform="matrix(0.999998 -0.00191795 -0.577907 0.816499 339.842 110.285)"
+                    className="answer-btn__bg-svg"
+                    fill={bgColor}
+                />
+                <rect
+                    width="289.373"
+                    height="127.243"
+                    transform="matrix(-0.999998 0.00191795 -0.579916 -0.814279 458.034 213.809)"
+                    className="answer-btn__bg-svg"
+                    fill={bgColor}
+                />
+                <rect
+                    width="289.373"
+                    height="127.243"
+                    transform="matrix(-0.999998 0.00191795 0.577907 -0.816499 384.247 112.873)"
+                    className="answer-btn__bg-svg"
+                    fill={bgColor}
+                />
+                <path
+                    d="M633.186 109.574C633.186 122.314 626.461 132.642 618.165 132.642C609.869 132.643 603.144 122.314 603.144 109.574C603.144 96.8334 609.87 86.5052 618.165 86.5052C626.461 86.5052 633.186 96.8333 633.186 109.574Z"
+                    fill={borderColor}
+                    className="answer-btn__border-svg"
+                />
+                <path
+                    d="M121.322 109.576C121.322 122.316 114.597 132.645 106.301 132.645C98.0055 132.645 91.2805 122.317 91.2805 109.576C91.2806 96.8357 98.0057 86.5074 106.301 86.5074C114.597 86.5074 121.322 96.8355 121.322 109.576Z"
+                    fill={borderColor}
+                    className="answer-btn__border-svg"
+                />
+                <defs>
+                    <filter
+                        id="filter0_d_1_129"
+                        x="256.632"
+                        y="0.0010376"
+                        width="389.983"
+                        height="121.927"
+                        filterUnits="userSpaceOnUse"
+                        colorInterpolationFilters="sRGB"
+                    >
+                        <feFlood floodOpacity="0" result="BackgroundImageFix" />
+                        <feColorMatrix
+                            in="SourceAlpha"
+                            type="matrix"
+                            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                            result="hardAlpha"
+                        />
+                        <feOffset dy="4" />
+                        <feGaussianBlur stdDeviation="2" />
+                        <feComposite in2="hardAlpha" operator="out" />
+                        <feColorMatrix
+                            type="matrix"
+                            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"
+                        />
+                        <feBlend
+                            mode="normal"
+                            in2="BackgroundImageFix"
+                            result="effect1_dropShadow_1_129"
+                        />
+                        <feBlend
+                            mode="normal"
+                            in="SourceGraphic"
+                            in2="effect1_dropShadow_1_129"
+                            result="shape"
+                        />
+                    </filter>
+                    <filter
+                        id="filter1_d_1_129"
+                        x="256.632"
+                        y="110.992"
+                        width="389.983"
+                        height="121.927"
+                        filterUnits="userSpaceOnUse"
+                        colorInterpolationFilters="sRGB"
+                    >
+                        <feFlood floodOpacity="0" result="BackgroundImageFix" />
+                        <feColorMatrix
+                            in="SourceAlpha"
+                            type="matrix"
+                            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                            result="hardAlpha"
+                        />
+                        <feOffset dy="4" />
+                        <feGaussianBlur stdDeviation="2" />
+                        <feComposite in2="hardAlpha" operator="out" />
+                        <feColorMatrix
+                            type="matrix"
+                            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"
+                        />
+                        <feBlend
+                            mode="normal"
+                            in2="BackgroundImageFix"
+                            result="effect1_dropShadow_1_129"
+                        />
+                        <feBlend
+                            mode="normal"
+                            in="SourceGraphic"
+                            in2="effect1_dropShadow_1_129"
+                            result="shape"
+                        />
+                    </filter>
+                    <filter
+                        id="filter2_d_1_129"
+                        x="76.3815"
+                        y="110.991"
+                        width="389.983"
+                        height="121.927"
+                        filterUnits="userSpaceOnUse"
+                        colorInterpolationFilters="sRGB"
+                    >
+                        <feFlood floodOpacity="0" result="BackgroundImageFix" />
+                        <feColorMatrix
+                            in="SourceAlpha"
+                            type="matrix"
+                            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                            result="hardAlpha"
+                        />
+                        <feOffset dy="4" />
+                        <feGaussianBlur stdDeviation="2" />
+                        <feComposite in2="hardAlpha" operator="out" />
+                        <feColorMatrix
+                            type="matrix"
+                            values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"
+                        />
+                        <feBlend
+                            mode="normal"
+                            in2="BackgroundImageFix"
+                            result="effect1_dropShadow_1_129"
+                        />
+                        <feBlend
+                            mode="normal"
+                            in="SourceGraphic"
+                            in2="effect1_dropShadow_1_129"
+                            result="shape"
+                        />
+                    </filter>
+                </defs>
+            </svg>
+        </>
+    );
+}
+
+export default Option;
