@@ -224,7 +224,6 @@ progress::-webkit-progress-value {
     gap: 2rem;
     padding: 4em;
     transform-origin: top center;
-    /* animation: fillWidthAndHeight 5s ease 0.5s both; */
 }
 
 .open.modal-call {
@@ -259,11 +258,29 @@ progress::-webkit-progress-value {
     color: #333;
 }
 
+.people.modal {
+    animation: fillWidthAndHeight 5s ease-in both, scaleDown 8.5s ease-in both;
+}
+
+.people .modal__content {
+    animation: fillWidthAndHeight 5s ease 3s both, scaleDown 9s ease both;
+}
+
+.friend.modal {
+    animation: fillWidthAndHeight 0.75s ease-in both;
+}
+.friend.modal__content {
+    animation: fillWidthAndHeight 0.5s ease 0.5s both;
+}
+.friend.close {
+    animation: scaleDown 1s ease both;
+}
+
 .open.modal__box__inner {
     width: 100%;
     background-color: var(--clr-yellow-500);
     border-radius: inherit;
-    animation: goUp 2.5s ease-in-out 1.5s both;
+    animation: goUp 2s ease-in-out 4.5s both;
 }
 
 .open.modal__box__inner > span {
@@ -272,7 +289,7 @@ progress::-webkit-progress-value {
     left: 50%;
     transform: translateX(-50%);
     font-size: 1.25rem;
-    animation: show 0.5s ease-out 2s both;
+    animation: show 0.5s ease-out 5.5s both;
 }
 
 @keyframes goUp {
@@ -285,14 +302,20 @@ progress::-webkit-progress-value {
 }
 
 @keyframes fillWidthAndHeight {
-    0%,
-    100% {
+    0% {
         transform: scale(0);
     }
-    10%,
-    50%,
     90% {
         transform: scale(1);
+    }
+}
+
+@keyframes scaleDown {
+    90% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(0);
     }
 }
 
@@ -325,6 +348,7 @@ progress::-webkit-progress-value {
 }
 .ModalCall h2 {
     font-size: 2.5rem;
+    text-align: center;
 }
 
 .ModalCall .btns {
@@ -332,13 +356,23 @@ progress::-webkit-progress-value {
     gap: 2rem;
 }
 
+.modal .success {
+    animation: upAndDown 0.2s linear 2;
+    background-color: hsla(120, 86%, 68%, 0.785);
+}
+
+.modal .danger {
+    animation: upAndDown 0.2s linear 2;
+    background-color: var(--clr-red-500);
+}
+
 /* key down btn */
 .key-down-btn {
-    background-color: #fbeee0;
-    border: 2px solid #422800;
+    background-color: #fff8f1;
+    border: 2px solid var(--clr-Dark-sky-blue);
     border-radius: 30px;
-    box-shadow: #422800 4px 4px 0 0;
-    color: #422800;
+    box-shadow: 4px 4px 0 0 hsl(214, 50%, 50%);
+    color: hsl(180, 91%, 13%);
     cursor: pointer;
     display: inline-block;
     font-weight: 600;
@@ -357,12 +391,12 @@ progress::-webkit-progress-value {
 }
 
 .key-down-btn:active {
-    box-shadow: #422800 2px 2px 0 0;
+    box-shadow: var(--clr-Darker-sky-blue) 2px 2px 0 0;
     transform: translate(2px, 2px);
 }
 
 .key-down-btn-with-keyboard {
-    box-shadow: #422800 2px 2px 0 0;
+    box-shadow: var(--clr-Darker-sky-blue) 2px 2px 0 0;
     transform: translate(2px, 2px);
 }
 
@@ -576,14 +610,15 @@ progress::-webkit-progress-value {
 }
 
 .answers .field.toggleSuccess .answer-btn__bg-svg {
-    animation: toggleSuccess 1s ease-in both;
+    animation: toggleSuccess 0.5s ease-in both;
 }
 
 .answers .field.toggleDanger .answer-btn__bg-svg {
-    animation: toggleDanger 1s ease-in both;
+    animation: toggleDanger 0.5s ease-in both;
 }
 
 @keyframes toggleSuccess {
+    10%,
     20%,
     40%,
     60%,
@@ -592,7 +627,6 @@ progress::-webkit-progress-value {
     }
 
     0%,
-    10%,
     30%,
     50%,
     70%,
@@ -632,6 +666,9 @@ progress::-webkit-progress-value {
     font-family: var(--font-secondary);
 }
 
+.footer span {
+    font-size: 2rem;
+}
 /* player won page */
 .bg-image {
     background: radial-gradient(

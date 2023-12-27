@@ -1,16 +1,22 @@
 import { useEffect, useState } from "react";
 
-function Timer() {
+function Timer({
+    time,
+    setTime,
+}: {
+    time: number;
+    setTime: React.Dispatch<React.SetStateAction<number>>;
+}) {
     const [circleOneStyles, setCircleOneStyles] = useState({});
     const [circleTwoStyles, setCircleTwoStyles] = useState({});
     const [circleThreeStyles, setCircleThreeStyles] = useState({});
-    const [time, setTime] = useState(0);
 
     useEffect(() => {
-        const seconds = 1000 * 20; // change the time here
+        const seconds = 1000 * 10; // change the time here
         const initialTime = Date.now();
         const futureTime = initialTime + seconds;
         const fiveSeconds = 5000;
+        // let remainSeconds = 5;
 
         const intervalId = setInterval(() => {
             const timeNow = Date.now();
@@ -47,8 +53,11 @@ function Timer() {
             }
         }, 20);
 
-        return () => clearInterval(intervalId);
-    }, []);
+        return () => {
+            clearInterval(intervalId);
+            // setTime(remainSeconds);
+        };
+    }, [setTime]);
 
     return (
         <div id="timer">

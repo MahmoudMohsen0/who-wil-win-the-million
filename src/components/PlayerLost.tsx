@@ -1,8 +1,14 @@
-function PlayerLost({
-    dispatch,
-}: {
-    dispatch: ({ type }: { type: string }) => void;
-}) {
+import { useEffect } from "react";
+import { MyDispatch } from "../lib/Types";
+
+function PlayerLost({ dispatch }: { dispatch: MyDispatch }) {
+    useEffect(() => {
+        dispatch({
+            type: "changeBackgroundAudioTo",
+            audio: { src: "../sounds/fail-page.mp3" },
+        });
+    }, [dispatch]);
+
     return (
         <div className="player-lost">
             <h2>أنت خسرت يا Loser😁</h2>

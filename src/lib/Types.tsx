@@ -39,11 +39,57 @@ export type InitialState = {
         secondOption: number | null;
         count: number;
     };
+    callYourFriend: { hasAsked: boolean; isOpen: boolean };
+    audio: {
+        backgroundAudioIsOn: boolean;
+        backgroundAudioSrc: string;
+        effectsAudioIsOn: boolean;
+        effectsAudioSrc: string;
+    };
 };
 
 export type Action = {
     type: string;
     payload?: string;
+    isOpen?: boolean;
+    audio?: {
+        bgSrc?: string;
+        bgIsOn?: boolean;
+        effectIsOn?: boolean;
+        effectSrc?: string;
+    };
 };
 
-export type MyDispatch = ({ type, payload }: Action) => void;
+export type MyDispatch = ({ type, payload, audio }: Action) => void;
+
+export type AudioT = {
+    backgroundAudioIsOn: boolean;
+    backgroundAudioSrc: string;
+    effectsAudioIsOn: boolean;
+    effectsAudioSrc: string;
+};
+
+export type HelperToolsProps = {
+    withdraw: boolean;
+    answeredQuestionsLength: number;
+    askTheAudience: { hasAsked: boolean; count: number };
+    deleteTwoOptions: {
+        hasDeleted: boolean;
+        firstOption: null | number;
+        secondOption: null | number;
+        count: number;
+    };
+    callYourFriend: { hasAsked: boolean; isOpen: boolean };
+    audio: AudioT;
+    dispatch: MyDispatch;
+};
+
+export type FieldProps = {
+    text: string;
+    question: QuestionT;
+    clicked?: string;
+    index?: number;
+    isQuestion?: boolean;
+    deleteThisOption?: boolean;
+    dispatch?: MyDispatch;
+};

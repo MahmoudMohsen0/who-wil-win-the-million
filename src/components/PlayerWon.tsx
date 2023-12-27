@@ -1,14 +1,19 @@
 import { useEffect } from "react";
 import confetti from "canvas-confetti";
+import { MyDispatch } from "../lib/Types";
 
 function PlayerWon({
     prizeValue,
     dispatch,
 }: {
     prizeValue: string;
-    dispatch: ({ type }: { type: string }) => void;
+    dispatch: MyDispatch;
 }) {
     useEffect(() => {
+        dispatch({
+            type: "changeBackgroundAudioTo",
+            audio: { src: "../sounds/success-page.mp3" },
+        });
         const duration = 1 * 1000;
         const end = Date.now() + duration;
 

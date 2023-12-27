@@ -20,9 +20,6 @@ function Answers({
     deleteTwoOptions,
     dispatch,
 }: AnswerProps) {
-    function handleClicked(id: string) {
-        dispatch({ type: "optionIsClicked", payload: id });
-    }
     const cantDelete = (i: number) =>
         deleteTwoOptions.firstOption === i ||
         deleteTwoOptions.secondOption === i;
@@ -43,7 +40,7 @@ function Answers({
                         dispatch={dispatch}
                         clicked={optionClicked}
                         question={question}
-                        handleClicked={handleClicked}
+                        // handleClicked={handleClicked}
                         key={"o-" + i}
                     />
                 );

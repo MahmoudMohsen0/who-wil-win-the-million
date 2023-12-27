@@ -103,7 +103,7 @@ function Modal({ correctIndex, deleteTwoOptions, askTheAudience }: ModalProps) {
         askTheAudience.hasAsked && askTheAudience.count === 1 ? "open" : "";
 
     return (
-        <div className={`modal ${isOpen}`}>
+        <div className={`modal ${isOpen} ${isOpen ? "people" : ""}`}>
             <div className={`modal__content ${isOpen}`}>
                 {/* box number 1 */}
                 <div className={`modal__box ${isOpen}`}>
