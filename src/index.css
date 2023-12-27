@@ -273,7 +273,7 @@ progress::-webkit-progress-value {
     animation: fillWidthAndHeight 0.5s ease 0.5s both;
 }
 .friend.close {
-    animation: scaleDown 1s ease both;
+    animation: scaleDown 1.5s ease both;
 }
 
 .open.modal__box__inner {

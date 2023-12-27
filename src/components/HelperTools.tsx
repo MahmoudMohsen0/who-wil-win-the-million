@@ -50,7 +50,7 @@ function HelperTools({
             isOpen: true,
             audio: {
                 bgIsOn: false,
-                effectIsOn: audio.backgroundAudioIsOn,
+                effectIsOn: audio.appAudioIsOn,
                 effectSrc: "../src/sounds/phone-a-friend.mp3",
             },
         });
@@ -60,11 +60,7 @@ function HelperTools({
     return (
         <section className="helper-tools">
             <Button sound={true} handleFunc={handleSound}>
-                {audio.backgroundAudioIsOn || audio.effectsAudioIsOn ? (
-                    <Audio />
-                ) : (
-                    <NoAudio />
-                )}
+                {audio.appAudioIsOn ? <Audio /> : <NoAudio />}
             </Button>
             <Button withdraw={withdraw} handleFunc={handleWithdraw}>
                 <Withdraw />

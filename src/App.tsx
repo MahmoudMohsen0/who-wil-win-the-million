@@ -36,9 +36,9 @@ const initState: InitialState = {
     },
     callYourFriend: { hasAsked: false, isOpen: false },
     audio: {
+        appAudioIsOn: false,
         backgroundAudioIsOn: false,
         backgroundAudioSrc: "../src/sounds/under-1000.mp3",
-        // backgroundAudioSrc: "../src/sounds/rightanswer.mp3",
         effectsAudioIsOn: false,
         effectsAudioSrc: "",
     },
@@ -66,6 +66,12 @@ const reducer = (state: InitialState, action: Action): InitialState => {
     let answeredQuestionsArr;
     let filtered;
     let answeredQ;
+    const playEffect = {
+        ...state.audio,
+        backgroundAudioIsOn: false,
+        effectsAudioIsOn: state.audio.appAudioIsOn,
+    };
+
     switch (action.type) {
         case "optionIsCorrect":
             if (!action.payload) return { ...state };
@@ -150,10 +156,8 @@ const reducer = (state: InitialState, action: Action): InitialState => {
                 gameFinished: true,
                 didUserWin: true,
                 audio: {
-                    ...state.audio,
-                    backgroundAudioIsOn: false,
-                    effectsAudioIsOn: state.audio.effectsAudioIsOn,
-                    effectsAudioSrc: "",
+                    ...playEffect,
+                    effectsAudioSrc: "", // add src file <<<<<<<<<<<<=====
                 },
             };
         //pending animaiton
@@ -165,9 +169,7 @@ const reducer = (state: InitialState, action: Action): InitialState => {
                     count: state.askTheAudience.count++,
                 },
                 audio: {
-                    ...state.audio,
-                    backgroundAudioIsOn: false,
-                    effectsAudioIsOn: state.audio.effectsAudioIsOn,
+                    ...playEffect,
                     effectsAudioSrc: "../src/sounds/ask-the-audience.mp3",
                 },
             };
@@ -180,7 +182,7 @@ const reducer = (state: InitialState, action: Action): InitialState => {
                     isOpen: action?.isOpen ?? false,
                 },
                 audio: {
-                    // ...state.audio,
+                    ...state.audio,
                     backgroundAudioIsOn: action.audio?.bgIsOn ?? false,
                     effectsAudioIsOn: action.audio?.effectIsOn ?? false,
                     backgroundAudioSrc: state.audio.backgroundAudioSrc,
@@ -200,12 +202,8 @@ const reducer = (state: InitialState, action: Action): InitialState => {
                     count: state.deleteTwoOptions.count++,
                 },
                 audio: {
-                    ...state.audio,
+                    ...playEffect,
                     effectsAudioSrc: "../src/sounds/50-50.mp3",
-                    backgroundAudioIsOn:
-                        state.audio.backgroundAudioIsOn ||
-                        state.audio.effectsAudioIsOn,
-                    effectsAudioIsOn: state.audio.effectsAudioIsOn,
                 },
             };
         case "toggleOnOffSounds":
@@ -213,21 +211,12 @@ const reducer = (state: InitialState, action: Action): InitialState => {
                 ...state,
                 audio: {
                     ...state.audio,
-                    backgroundAudioIsOn: !state.audio.backgroundAudioIsOn,
-                    effectsAudioIsOn: !state.audio.backgroundAudioIsOn,
+                    appAudioIsOn: !state.audio.appAudioIsOn,
+                    backgroundAudioIsOn: !state.audio.appAudioIsOn,
+                    effectsAudioIsOn: !state.audio.appAudioIsOn,
                     effectsAudioSrc: "",
                 },
             };
-        // case "playfriendVoice":
-        //     return {
-        //         ...state,
-        //         audio: {
-        //             ...state.audio,
-        //             backgroundAudioIsOn: false,
-        //             effectsAudioIsOn: true,
-        //             effectsAudioSrc: action.audio?.effectSrc ?? "",
-        //         },
-        //     };
 
         case "changeAudioAfterDelay":
             return {
@@ -235,9 +224,7 @@ const reducer = (state: InitialState, action: Action): InitialState => {
                 audio: {
                     ...state.audio,
                     effectsAudioIsOn: false,
-                    backgroundAudioIsOn:
-                        state.audio.backgroundAudioIsOn ||
-                        state.audio.effectsAudioIsOn,
+                    backgroundAudioIsOn: state.audio.appAudioIsOn,
                     effectsAudioSrc: "",
                 },
             };
@@ -269,7 +256,6 @@ function App() {
     ] = useReducer(reducer, initState);
     const answeredQuestionsLength = answeredQuestions.length;
     const prizeValue = prizes[answeredQuestionsLength - 1];
-    // console.log(askTheAudience);
 
     return (
         <div

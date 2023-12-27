@@ -40,12 +40,7 @@ export type InitialState = {
         count: number;
     };
     callYourFriend: { hasAsked: boolean; isOpen: boolean };
-    audio: {
-        backgroundAudioIsOn: boolean;
-        backgroundAudioSrc: string;
-        effectsAudioIsOn: boolean;
-        effectsAudioSrc: string;
-    };
+    audio: AudioT;
 };
 
 export type Action = {
@@ -67,6 +62,7 @@ export type AudioT = {
     backgroundAudioSrc: string;
     effectsAudioIsOn: boolean;
     effectsAudioSrc: string;
+    appAudioIsOn: boolean;
 };
 
 export type HelperToolsProps = {

@@ -96,14 +96,16 @@ function ModalCall({
     const playerReachTheTarget = countKeyRightAndLeftPressed >= 10; // if player press 50 times friend voice will be on
     const playerWin = !miniGameFinished && playerReachTheTarget;
     const playerLost = miniGameFinished && !playerReachTheTarget;
+    console.log(playerWin);
 
     useEffect(() => {
         if (playerWin) {
             dispatch({
                 type: "callYourFriend",
+                // isOpen: callYourFriend.isOpen,
                 audio: {
                     bgIsOn: false,
-                    effectIsOn: audio.backgroundAudioIsOn,
+                    effectIsOn: audio.appAudioIsOn,
                     effectSrc: `../src/sounds/answer-${
                         currentQuestion.correct + 1
                     }.mp3`,
@@ -114,7 +116,7 @@ function ModalCall({
                         dispatch({
                             type: "callYourFriend",
                             audio: {
-                                bgIsOn: audio.backgroundAudioIsOn,
+                                bgIsOn: audio.appAudioIsOn,
                                 effectIsOn: false,
                             },
                         }),
@@ -124,14 +126,13 @@ function ModalCall({
         if (playerLost) {
             dispatch({
                 type: "changeAudioAfterDelay",
-                // audio: { bgIsOn: audio.backgroundAudioIsOn },
             });
             setTimeout(
                 () =>
                     dispatch({
                         type: "callYourFriend",
                         audio: {
-                            bgIsOn: audio.backgroundAudioIsOn,
+                            bgIsOn: audio.appAudioIsOn,
                             effectIsOn: false,
                         },
                     }),
@@ -148,7 +149,7 @@ function ModalCall({
     return (
         <div className="ModalCall ">
             <div
-                className={`modal ${isOpen} ${playerWinClass} ${playerLostClass}`}
+                className={`modal ${isOpen} ${playerWinClass}  ${playerLostClass}`}
             >
                 <div
                     className={`modal__content ${isOpen} modal-call ${playerWinClass} ${playerLostClass}`}
@@ -181,11 +182,11 @@ function ModalCall({
                             </div>
                         </>
                     )}
-                    {miniGameFinished &&
-                        playerReachTheTarget &&
-                        !audio.effectsAudioIsOn && (
-                            <h3>الإجابة هي {currentQuestion.correct + 1}</h3>
-                        )}
+                    {playerWin && !audio.appAudioIsOn && (
+                        <h2 style={{ color: "white", fontSize: "40px" }}>
+                            الإجابة هي {currentQuestion.correct + 1}
+                        </h2>
+                    )}
                 </div>
             </div>
         </div>
