@@ -12,7 +12,7 @@ function Timer({
     const [circleThreeStyles, setCircleThreeStyles] = useState({});
 
     useEffect(() => {
-        const seconds = 1000 * 10; // change the time here
+        const seconds = 1000 * 30; // change the time here
         const initialTime = Date.now();
         const futureTime = initialTime + seconds;
         const fiveSeconds = 5000;

@@ -693,13 +693,13 @@ progress::-webkit-progress-value {
     text-align: center;
     color: var(--clr-red-500);
     text-shadow: 2px 3px var(--clr-yellow-500);
-    animation: rotateScalo 2s ease 2;
+    animation: rotateScalo 2s ease infinite;
 }
 
 @keyframes rotateScalo {
     30% {
         transform: scale(1.1);
-        color: rgb(255, 32, 214);
+        color: var(--clr-green-300);
     }
     40%,
     60% {

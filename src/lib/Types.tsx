@@ -46,7 +46,7 @@ export type InitialState = {
 export type Action = {
     type: string;
     payload?: string;
-    isOpen?: boolean;
+    OpenTarget?: boolean;
     audio?: {
         bgSrc?: string;
         bgIsOn?: boolean;
@@ -55,7 +55,7 @@ export type Action = {
     };
 };
 
-export type MyDispatch = ({ type, payload, audio }: Action) => void;
+export type MyDispatch = ({ type, payload, OpenTarget, audio }: Action) => void;
 
 export type AudioT = {
     backgroundAudioIsOn: boolean;

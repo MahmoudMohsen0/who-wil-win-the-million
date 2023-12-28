@@ -47,14 +47,13 @@ function HelperTools({
     const handleCall = () => {
         dispatch({
             type: "callYourFriend",
-            isOpen: true,
+            OpenTarget: true,
             audio: {
                 bgIsOn: false,
                 effectIsOn: audio.appAudioIsOn,
                 effectSrc: "../src/sounds/phone-a-friend.mp3",
             },
         });
-        // trigerAfterSeconds(30000, dispatch);
     };
 
     return (

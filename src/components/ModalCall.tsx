@@ -1,7 +1,7 @@
 import Progress from "./Progress";
 import KeyDownBtn from "./KeyDownBtn";
 import Timer from "./Timer";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { AudioT, MyDispatch, QuestionT } from "../lib/Types";
 
 type ModalCallProps = {
@@ -17,6 +17,7 @@ function ModalCall({
     audio,
     dispatch,
 }: ModalCallProps) {
+    const firstMount = useRef(0);
     const [keysPressed, setKeysPressed] = useState<{
         ArrowRight: boolean;
         ArrowLeft: boolean;
@@ -29,7 +30,7 @@ function ModalCall({
     const [timeoutId, setTimeoutId] = useState<number | null>(null);
     const [bothClicked, setBothClicked] = useState(false);
     const [innerWidth, setInnerWidth] = useState<number | null>(null);
-    const [time, setTime] = useState(5);
+    const [time, setTime] = useState(30);
 
     const handleKeyDown = useCallback(
         (event: KeyboardEvent) => {
@@ -99,10 +100,13 @@ function ModalCall({
     console.log(playerWin);
 
     useEffect(() => {
-        if (playerWin) {
+        if (miniGameFinished || playerReachTheTarget) {
+            firstMount.current++;
+        }
+        if (playerWin && firstMount.current <= 1) {
             dispatch({
                 type: "callYourFriend",
-                // isOpen: callYourFriend.isOpen,
+                OpenTarget: true,
                 audio: {
                     bgIsOn: false,
                     effectIsOn: audio.appAudioIsOn,
@@ -115,6 +119,7 @@ function ModalCall({
                     () =>
                         dispatch({
                             type: "callYourFriend",
+                            OpenTarget: false,
                             audio: {
                                 bgIsOn: audio.appAudioIsOn,
                                 effectIsOn: false,
@@ -123,7 +128,7 @@ function ModalCall({
                     15000
                 );
         }
-        if (playerLost) {
+        if (playerLost && firstMount.current <= 1) {
             dispatch({
                 type: "changeAudioAfterDelay",
             });
@@ -138,8 +143,11 @@ function ModalCall({
                     }),
                 1200
             );
+            // firstMount.current++;
         }
-    }, [playerWin, playerLost, currentQuestion, audio, dispatch]);
+
+        console.log(firstMount.current);
+    });
 
     const playerWinClass = playerWin ? "close success" : "";
     const playerLostClass = playerLost ? "close danger" : "";

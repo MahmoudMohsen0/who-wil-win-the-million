@@ -179,7 +179,7 @@ const reducer = (state: InitialState, action: Action): InitialState => {
                 ...state,
                 callYourFriend: {
                     hasAsked: true,
-                    isOpen: action?.isOpen ?? false,
+                    isOpen: action?.OpenTarget ?? false,
                 },
                 audio: {
                     ...state.audio,
@@ -228,12 +228,24 @@ const reducer = (state: InitialState, action: Action): InitialState => {
                     effectsAudioSrc: "",
                 },
             };
+
+        case "changeBackgroundAudioTo":
+            return {
+                ...state,
+                audio: {
+                    ...state.audio,
+                    backgroundAudioIsOn: state.audio.appAudioIsOn,
+                    backgroundAudioSrc: action.audio?.bgSrc ?? "",
+                    effectsAudioIsOn: false,
+                },
+            };
         case "reset":
             return {
                 ...initState,
             };
 
         default:
+            console.log(action);
             throw new Error();
     }
 };
@@ -279,7 +291,7 @@ function App() {
                     <Main>
                         <PlayerLost dispatch={dispatch} />
                         <EffectsAudioPlayer audio={audio} />
-                        {/* <BackgroundAudioPlayer audio={audio} />d */}
+                        <BackgroundAudioPlayer audio={audio} />
                     </Main>
                 )
             ) : (

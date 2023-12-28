@@ -12,7 +12,7 @@ function PlayerWon({
     useEffect(() => {
         dispatch({
             type: "changeBackgroundAudioTo",
-            audio: { src: "../sounds/success-page.mp3" },
+            audio: { bgSrc: "../src/sounds/winner-page.mp3" },
         });
         const duration = 1 * 1000;
         const end = Date.now() + duration;
@@ -60,7 +60,7 @@ function PlayerWon({
 
         // Clean up the timeout on component unmount
         return () => clearTimeout(timeoutId);
-    }, []);
+    }, [dispatch]);
 
     return (
         <div className="player-won">
