@@ -38,7 +38,7 @@ const initState: InitialState = {
     audio: {
         appAudioIsOn: false,
         backgroundAudioIsOn: false,
-        backgroundAudioSrc: "../src/sounds/under-1000.mp3",
+        backgroundAudioSrc: "../src/sounds/background-audio.mp3",
         effectsAudioIsOn: false,
         effectsAudioSrc: "",
     },
@@ -71,6 +71,12 @@ const reducer = (state: InitialState, action: Action): InitialState => {
         backgroundAudioIsOn: false,
         effectsAudioIsOn: state.audio.appAudioIsOn,
     };
+    const playBackground = {
+        ...state.audio,
+        effectsAudioSrc: "",
+        backgroundAudioIsOn: state.audio.appAudioIsOn,
+        effectsAudioIsOn: false,
+    };
 
     switch (action.type) {
         case "optionIsCorrect":
@@ -96,10 +102,6 @@ const reducer = (state: InitialState, action: Action): InitialState => {
                         firstOption: null,
                         secondOption: null,
                     },
-                    // audio: {
-                    //     ...state.audio,
-                    //     backgroundAudioSrc: "../src/sounds/success-page.mp3",
-                    // },
                 };
             }
             // Game is still Going and option is correct
@@ -118,10 +120,9 @@ const reducer = (state: InitialState, action: Action): InitialState => {
                     firstOption: null,
                     secondOption: null,
                 },
-                // audio: {
-                //     isOn: state.audio.isOn,
-                //     src: "../src/sounds/background.mp3",
-                // },
+                audio: {
+                    ...playBackground,
+                },
             };
         case "optionIsClicked":
             if (!action.payload)
@@ -131,10 +132,10 @@ const reducer = (state: InitialState, action: Action): InitialState => {
             return {
                 ...state,
                 optionClicked: action.payload,
-                // audio: {
-                //     ...state.audio,
-                //     // src: action.audio?.src ?? "",
-                // },
+                audio: {
+                    ...playEffect,
+                    effectsAudioSrc: action.audio?.effectSrc ?? "",
+                },
             };
         case "optionIsWrong":
             return {
@@ -147,7 +148,9 @@ const reducer = (state: InitialState, action: Action): InitialState => {
                     firstOption: null,
                     secondOption: null,
                 },
-                // audio: { ...state.audio, src: "../src/sounds/wronganswer.mp3" },
+                audio: {
+                    ...playBackground,
+                },
             };
 
         case "withdraw":
@@ -155,12 +158,8 @@ const reducer = (state: InitialState, action: Action): InitialState => {
                 ...state,
                 gameFinished: true,
                 didUserWin: true,
-                audio: {
-                    ...playEffect,
-                    effectsAudioSrc: "", // add src file <<<<<<<<<<<<=====
-                },
             };
-        //pending animaiton
+
         case "askTheAudience":
             return {
                 ...state,
@@ -173,7 +172,7 @@ const reducer = (state: InitialState, action: Action): InitialState => {
                     effectsAudioSrc: "../src/sounds/ask-the-audience.mp3",
                 },
             };
-        //pending
+
         case "callYourFriend":
             return {
                 ...state,
@@ -189,7 +188,7 @@ const reducer = (state: InitialState, action: Action): InitialState => {
                     effectsAudioSrc: action.audio?.effectSrc ?? "",
                 },
             };
-        // done
+
         case "deleteTwoOptions":
             return {
                 ...state,
@@ -206,6 +205,7 @@ const reducer = (state: InitialState, action: Action): InitialState => {
                     effectsAudioSrc: "../src/sounds/50-50.mp3",
                 },
             };
+
         case "toggleOnOffSounds":
             return {
                 ...state,
@@ -222,10 +222,7 @@ const reducer = (state: InitialState, action: Action): InitialState => {
             return {
                 ...state,
                 audio: {
-                    ...state.audio,
-                    effectsAudioIsOn: false,
-                    backgroundAudioIsOn: state.audio.appAudioIsOn,
-                    effectsAudioSrc: "",
+                    ...playBackground,
                 },
             };
 
@@ -233,15 +230,20 @@ const reducer = (state: InitialState, action: Action): InitialState => {
             return {
                 ...state,
                 audio: {
-                    ...state.audio,
-                    backgroundAudioIsOn: state.audio.appAudioIsOn,
+                    ...playBackground,
                     backgroundAudioSrc: action.audio?.bgSrc ?? "",
-                    effectsAudioIsOn: false,
                 },
             };
         case "reset":
             return {
                 ...initState,
+                audio: {
+                    ...state.audio,
+                    backgroundAudioIsOn: state.audio.appAudioIsOn,
+                    backgroundAudioSrc: initState.audio.backgroundAudioSrc,
+                    effectsAudioIsOn: state.audio.appAudioIsOn,
+                },
+                askTheAudience: { count: 0, hasAsked: false },
             };
 
         default:

@@ -2,21 +2,21 @@ import React from "react";
 
 function Button({
     children,
-    sound = false,
+    settingBtn = false,
     fifty = false,
     withdraw = false,
     disabled = false,
     handleFunc,
 }: {
     children: React.ReactNode;
-    sound?: boolean;
+    settingBtn?: boolean;
     fifty?: boolean;
     withdraw?: boolean;
     disabled?: boolean;
     handleFunc: () => void;
 }) {
-    const classNameStyles = sound
-        ? "sound"
+    const classNameStyles = settingBtn
+        ? "bg-setting-btn"
         : fifty
         ? "fifty"
         : withdraw

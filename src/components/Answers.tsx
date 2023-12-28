@@ -1,18 +1,5 @@
-// import { faL } from "@fortawesome/free-solid-svg-icons";
-import { MyDispatch, QuestionT } from "../lib/Types";
+import { AnswerProps } from "../lib/Types";
 import Field from "./Field";
-
-type AnswerProps = {
-    question: QuestionT;
-    optionClicked: string;
-    deleteTwoOptions: {
-        hasDeleted: boolean;
-        firstOption: null | number;
-        secondOption: null | number;
-        count: number;
-    };
-    dispatch: MyDispatch;
-};
 
 function Answers({
     question,
@@ -40,7 +27,6 @@ function Answers({
                         dispatch={dispatch}
                         clicked={optionClicked}
                         question={question}
-                        // handleClicked={handleClicked}
                         key={"o-" + i}
                     />
                 );

@@ -1,14 +1,18 @@
+import { useState, useEffect, useCallback, useRef } from "react";
 import Progress from "./Progress";
 import KeyDownBtn from "./KeyDownBtn";
 import Timer from "./Timer";
-import { useState, useEffect, useCallback, useRef } from "react";
-import { AudioT, MyDispatch, QuestionT } from "../lib/Types";
+import { ModalCallProps } from "../lib/Types";
 
-type ModalCallProps = {
-    callYourFriend: { hasAsked: boolean; isOpen: boolean };
-    currentQuestion: QuestionT;
-    audio: AudioT;
-    dispatch: MyDispatch;
+// Debounce function for handling resize events
+const debounce = (fn: () => void, delay: number) => {
+    let timeoutId: number;
+    return function () {
+        clearTimeout(timeoutId);
+        timeoutId = setTimeout(() => {
+            fn();
+        }, delay);
+    };
 };
 
 function ModalCall({
@@ -18,10 +22,7 @@ function ModalCall({
     dispatch,
 }: ModalCallProps) {
     const firstMount = useRef(0);
-    const [keysPressed, setKeysPressed] = useState<{
-        ArrowRight: boolean;
-        ArrowLeft: boolean;
-    }>({
+    const [keysPressed, setKeysPressed] = useState({
         ArrowRight: false,
         ArrowLeft: false,
     });
@@ -63,6 +64,10 @@ function ModalCall({
         setBothClicked(false);
     };
 
+    const handleResize = useCallback(() => {
+        setInnerWidth(window.innerWidth);
+    }, []);
+
     useEffect(() => {
         document.addEventListener("keydown", handleKeyDown as EventListener);
         document.addEventListener("keyup", handleKeyUp as EventListener);
@@ -75,7 +80,17 @@ function ModalCall({
             );
             document.removeEventListener("keyup", handleKeyUp as EventListener);
         };
-    }, [handleKeyDown, handleKeyUp]); // Include handleKeyDown and handleKeyUp in the dependency array
+    }, [handleKeyDown, handleKeyUp]);
+
+    useEffect(() => {
+        const debouncedResize = debounce(handleResize, 200);
+
+        window.addEventListener("resize", debouncedResize);
+
+        return () => {
+            window.removeEventListener("resize", debouncedResize);
+        };
+    }, [handleResize]);
 
     useEffect(() => {
         // Check if both ArrowRight and ArrowLeft are pressed
@@ -87,34 +102,24 @@ function ModalCall({
 
     useEffect(() => setInnerWidth(window.innerWidth), []);
 
-    const isOpen = callYourFriend.isOpen ? "open friend" : "";
-    const isViewOnSmallScreen =
-        innerWidth && innerWidth > 1000
-            ? "اضغظ علي زرار اليمين و اليسار في نفس الوقت علي الكيبورد"
-            : "اضغظ علي زرار اليمين و اليسار في نفس الوقت";
-
-    const miniGameFinished = time <= 0;
-    const playerReachTheTarget = countKeyRightAndLeftPressed >= 10; // if player press 50 times friend voice will be on
-    const playerWin = !miniGameFinished && playerReachTheTarget;
-    const playerLost = miniGameFinished && !playerReachTheTarget;
-    console.log(playerWin);
+    const playerWin = !(time <= 0) && countKeyRightAndLeftPressed >= 140;
+    const playerLost = time <= 0 && countKeyRightAndLeftPressed < 140;
 
     useEffect(() => {
-        if (miniGameFinished || playerReachTheTarget) {
+        if ((playerWin || playerLost) && firstMount.current <= 1) {
             firstMount.current++;
-        }
-        if (playerWin && firstMount.current <= 1) {
-            dispatch({
-                type: "callYourFriend",
-                OpenTarget: true,
-                audio: {
-                    bgIsOn: false,
-                    effectIsOn: audio.appAudioIsOn,
-                    effectSrc: `../src/sounds/answer-${
-                        currentQuestion.correct + 1
-                    }.mp3`,
-                },
-            }),
+            if (playerWin) {
+                dispatch({
+                    type: "callYourFriend",
+                    OpenTarget: true,
+                    audio: {
+                        bgIsOn: false,
+                        effectIsOn: audio.appAudioIsOn,
+                        effectSrc: `../src/sounds/answer-${
+                            currentQuestion.correct + 1
+                        }.mp3`,
+                    },
+                });
                 setTimeout(
                     () =>
                         dispatch({
@@ -127,49 +132,60 @@ function ModalCall({
                         }),
                     15000
                 );
+            }
+            if (playerLost) {
+                dispatch({
+                    type: "changeAudioAfterDelay",
+                });
+                setTimeout(
+                    () =>
+                        dispatch({
+                            type: "callYourFriend",
+                            audio: {
+                                bgIsOn: audio.appAudioIsOn,
+                                effectIsOn: false,
+                            },
+                        }),
+                    1200
+                );
+            }
         }
-        if (playerLost && firstMount.current <= 1) {
-            dispatch({
-                type: "changeAudioAfterDelay",
-            });
-            setTimeout(
-                () =>
-                    dispatch({
-                        type: "callYourFriend",
-                        audio: {
-                            bgIsOn: audio.appAudioIsOn,
-                            effectIsOn: false,
-                        },
-                    }),
-                1200
-            );
-            // firstMount.current++;
-        }
-
-        console.log(firstMount.current);
-    });
-
-    const playerWinClass = playerWin ? "close success" : "";
-    const playerLostClass = playerLost ? "close danger" : "";
-
-    console.log(time);
+    }, [
+        playerWin,
+        playerLost,
+        audio.appAudioIsOn,
+        currentQuestion.correct,
+        dispatch,
+    ]);
 
     return (
         <div className="ModalCall ">
             <div
-                className={`modal ${isOpen} ${playerWinClass}  ${playerLostClass}`}
+                className={`modal ${
+                    callYourFriend.isOpen ? "open friend" : ""
+                } ${playerWin ? "close success" : ""}  ${
+                    playerLost ? "close danger" : ""
+                }`}
             >
                 <div
-                    className={`modal__content ${isOpen} modal-call ${playerWinClass} ${playerLostClass}`}
+                    className={`modal__content ${
+                        callYourFriend.isOpen ? "open friend" : ""
+                    } modal-call ${playerWin ? "close success" : ""} ${
+                        playerLost ? "close danger" : ""
+                    }`}
                 >
-                    {!miniGameFinished && !playerReachTheTarget && (
+                    {!(time <= 0) && !playerWin && (
                         <>
                             <Timer time={time} setTime={setTime} />
                             <Progress
                                 correctQsLength={countKeyRightAndLeftPressed}
-                                max={50}
+                                max={140}
                             />
-                            <h2>{isViewOnSmallScreen}</h2>
+                            <h2>
+                                {innerWidth && innerWidth > 1000
+                                    ? "اضغظ علي زرار اليمين و اليسار في نفس الوقت علي الكيبورد"
+                                    : "اضغظ علي زرار اليمين و اليسار في نفس الوقت"}
+                            </h2>
                             <div className="btns">
                                 <KeyDownBtn
                                     name="زرار اليمين"

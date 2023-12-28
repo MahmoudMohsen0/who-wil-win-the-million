@@ -89,3 +89,22 @@ export type FieldProps = {
     deleteThisOption?: boolean;
     dispatch?: MyDispatch;
 };
+
+export type AnswerProps = {
+    question: QuestionT;
+    optionClicked: string;
+    deleteTwoOptions: {
+        hasDeleted: boolean;
+        firstOption: null | number;
+        secondOption: null | number;
+        count: number;
+    };
+    dispatch: MyDispatch;
+};
+
+export type ModalCallProps = {
+    callYourFriend: { hasAsked: boolean; isOpen: boolean };
+    currentQuestion: QuestionT;
+    audio: AudioT;
+    dispatch: MyDispatch;
+};

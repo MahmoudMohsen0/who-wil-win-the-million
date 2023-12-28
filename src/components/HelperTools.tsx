@@ -58,28 +58,41 @@ function HelperTools({
 
     return (
         <section className="helper-tools">
-            <Button sound={true} handleFunc={handleSound}>
-                {audio.appAudioIsOn ? <Audio /> : <NoAudio />}
-            </Button>
-            <Button withdraw={withdraw} handleFunc={handleWithdraw}>
-                <Withdraw />
-            </Button>
-            <Button
-                handleFunc={handlePeople}
-                disabled={askTheAudience?.count > 1 || askTheAudience.hasAsked}
-            >
-                <People />
-            </Button>
-            <Button
-                fifty={true}
-                handleFunc={handleFiftyChance}
-                disabled={deleteTwoOptions.hasDeleted}
-            >
-                <FiftyChance />
-            </Button>
-            <Button handleFunc={handleCall} disabled={callYourFriend?.hasAsked}>
-                <Call />
-            </Button>
+            <div className="setting">
+                <Button settingBtn={true} handleFunc={handleWithdraw}>
+                    <h2>Reset</h2>
+                </Button>
+                <Button settingBtn={true} handleFunc={handleSound}>
+                    {audio.appAudioIsOn ? <Audio /> : <NoAudio />}
+                </Button>
+                <Button settingBtn={withdraw} handleFunc={handleWithdraw}>
+                    <Withdraw />
+                </Button>
+            </div>
+
+            <div className="hints">
+                <Button
+                    handleFunc={handlePeople}
+                    disabled={
+                        askTheAudience?.count > 1 || askTheAudience.hasAsked
+                    }
+                >
+                    <People />
+                </Button>
+                <Button
+                    fifty={true}
+                    handleFunc={handleFiftyChance}
+                    disabled={deleteTwoOptions.hasDeleted}
+                >
+                    <FiftyChance />
+                </Button>
+                <Button
+                    handleFunc={handleCall}
+                    disabled={callYourFriend?.hasAsked}
+                >
+                    <Call />
+                </Button>
+            </div>
         </section>
     );
 }

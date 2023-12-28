@@ -51,7 +51,7 @@ function Timer({
                 setCircleTwoStyles({ transform: `rotate(${angle}deg)` });
                 setCircleThreeStyles({ display: "block" });
             }
-        }, 20);
+        }, 0);
 
         return () => {
             clearInterval(intervalId);

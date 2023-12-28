@@ -39,7 +39,7 @@ FieldProps) {
             dispatch({
                 type: "optionIsClicked",
                 payload: id,
-                audio: { src: src ?? "" },
+                audio: { effectSrc: src },
             });
     }
 
@@ -50,7 +50,7 @@ FieldProps) {
                 if ((!handleClicked && isQuestion) || !dispatch) return;
 
                 if (isCorrect && !deleteThisOption) {
-                    handleClicked(id, "../src/sounds/right.mp3");
+                    handleClicked(id, "../src/sounds/right-answer.mp3");
 
                     setTimeout(() => {
                         dispatch({
@@ -60,7 +60,7 @@ FieldProps) {
                     }, 500);
                 }
                 if (!isCorrect && !deleteThisOption) {
-                    handleClicked(id, "../src/sounds/wronganswer.mp3");
+                    handleClicked(id, "../src/sounds/wrong-answer.mp3");
 
                     setTimeout(() => {
                         dispatch({
