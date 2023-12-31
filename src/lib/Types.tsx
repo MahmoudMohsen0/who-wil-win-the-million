@@ -21,7 +21,6 @@ export type QuestionT = {
     question: string;
     options: [string, string, string, string];
     correct: number;
-    difficulty: string;
 };
 
 export type InitialState = {
@@ -46,6 +45,7 @@ export type InitialState = {
 export type Action = {
     type: string;
     payload?: string;
+    questions?: QuestionT[];
     OpenTarget?: boolean;
     audio?: {
         bgSrc?: string;

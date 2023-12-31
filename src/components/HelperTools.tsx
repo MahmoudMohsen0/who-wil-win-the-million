@@ -22,6 +22,9 @@ function HelperTools({
     callYourFriend,
     dispatch,
 }: HelperToolsProps) {
+    const handleReset = () => {
+        dispatch({ type: "reset" });
+    };
     const handleSound = () => {
         dispatch({
             type: "toggleOnOffSounds",
@@ -59,13 +62,13 @@ function HelperTools({
     return (
         <section className="helper-tools">
             <div className="setting">
-                <Button settingBtn={true} handleFunc={handleWithdraw}>
+                <Button settingBtn={true} handleFunc={handleReset}>
                     <h2>Reset</h2>
                 </Button>
                 <Button settingBtn={true} handleFunc={handleSound}>
                     {audio.appAudioIsOn ? <Audio /> : <NoAudio />}
                 </Button>
-                <Button settingBtn={withdraw} handleFunc={handleWithdraw}>
+                <Button withdraw={withdraw} handleFunc={handleWithdraw}>
                     <Withdraw />
                 </Button>
             </div>

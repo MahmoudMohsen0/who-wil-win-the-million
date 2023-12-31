@@ -64,6 +64,40 @@ function ModalCall({
         setBothClicked(false);
     };
 
+    const handleTouchStart = useCallback(() => {
+        setKeysPressed((prevState) => ({
+            ...prevState,
+            touch: true,
+        }));
+        setTimeoutId(setTimeout(() => clearKeysPressed(), 25));
+    }, []);
+
+    const handleTouchEnd = useCallback(() => {
+        if (timeoutId) {
+            clearTimeout(timeoutId);
+        }
+        clearKeysPressed();
+    }, [timeoutId]);
+
+    useEffect(() => {
+        document.addEventListener(
+            "touchstart",
+            handleTouchStart as EventListener
+        );
+        document.addEventListener("touchend", handleTouchEnd as EventListener);
+
+        return () => {
+            document.removeEventListener(
+                "touchstart",
+                handleTouchStart as EventListener
+            );
+            document.removeEventListener(
+                "touchend",
+                handleTouchEnd as EventListener
+            );
+        };
+    }, [handleTouchStart, handleTouchEnd]);
+
     const handleResize = useCallback(() => {
         setInnerWidth(window.innerWidth);
     }, []);
@@ -180,6 +214,7 @@ function ModalCall({
                             <Progress
                                 correctQsLength={countKeyRightAndLeftPressed}
                                 max={140}
+                                dispatch={dispatch}
                             />
                             <h2>
                                 {innerWidth && innerWidth > 1000

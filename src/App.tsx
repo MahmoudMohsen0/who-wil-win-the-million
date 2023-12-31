@@ -1,4 +1,4 @@
-import { useReducer } from "react";
+import { useEffect, useReducer } from "react";
 import Header from "./components/Header";
 import HelperTools from "./components/HelperTools";
 import Main from "./components/Main";
@@ -12,17 +12,34 @@ import Progress from "./components/Progress";
 import PlayerWon from "./components/PlayerWon";
 import PlayerLost from "./components/PlayerLost";
 import Modal from "./components/Modal";
-import { getRandomNum } from "./components/Modal";
 import ModalCall from "./components/ModalCall";
 import BackgroundAudioPlayer from "./components/BackgroundAudioPlayer";
 import EffectsAudioPlayer from "./components/EffectsAudioPlayer";
-
+import { asyncFunc } from "./global functions/asyncOperations";
+import {
+    findIndexOfQuestions,
+    filterFound,
+    getOneOptionWrong,
+    getItemFromLocal,
+} from "./global functions/globalFunctions";
 ////<reference types="vite-plugin-svgr/client" />;
+
+const currentGameQuestion = () => {
+    let quizGames: [QuestionT[]] | [] = getItemFromLocal("quizGames"); // []
+    // const gamesLength: number = quizGames.length;
+    if (quizGames.length === 0) {
+        quizGames = [[...questionData]];
+        localStorage.setItem("quizGames", JSON.stringify(quizGames));
+    }
+    return quizGames[quizGames.length - 1];
+};
+
+const gameQuestions: QuestionT[] = currentGameQuestion();
 
 const initState: InitialState = {
     answeredQuestions: [],
-    nextQuestions: questionData,
-    currentQuestion: questionData[0],
+    nextQuestions: gameQuestions,
+    currentQuestion: gameQuestions[0],
     optionClicked: "",
     didUserWin: false,
     gameFinished: false,
@@ -43,29 +60,14 @@ const initState: InitialState = {
         effectsAudioSrc: "",
     },
 };
-
-const findIndexOfQuestions = (arr: QuestionT[], targetId: string) => {
-    return arr.findIndex((ele) => ele.id === targetId);
-};
-
-const filterFound = (arr: QuestionT[], targetId: string) => {
-    const index = findIndexOfQuestions(arr, targetId);
-    return arr.filter((_, i) => i !== index);
-};
-
-const getOneOptionWrong = (indexCorrect: number): number => {
-    const result = getRandomNum(0, 3);
-    if (result !== indexCorrect && typeof result === "number") {
-        return result;
-    }
-    return getOneOptionWrong(indexCorrect);
-};
+// const gameQuestionsOnReset: QuestionT[] = currentGameQuestion();
 
 const reducer = (state: InitialState, action: Action): InitialState => {
     let answeredIndex;
     let answeredQuestionsArr;
     let filtered;
     let answeredQ;
+    let nextGameQuestions: QuestionT[];
     const playEffect = {
         ...state.audio,
         backgroundAudioIsOn: false,
@@ -234,16 +236,21 @@ const reducer = (state: InitialState, action: Action): InitialState => {
                     backgroundAudioSrc: action.audio?.bgSrc ?? "",
                 },
             };
+
         case "reset":
+            console.log("reseted");
+            nextGameQuestions = currentGameQuestion();
             return {
                 ...initState,
+                nextQuestions: nextGameQuestions,
+                currentQuestion: nextGameQuestions[0],
+                callYourFriend: { hasAsked: false, isOpen: false },
                 audio: {
                     ...state.audio,
                     backgroundAudioIsOn: state.audio.appAudioIsOn,
                     backgroundAudioSrc: initState.audio.backgroundAudioSrc,
                     effectsAudioIsOn: state.audio.appAudioIsOn,
                 },
-                askTheAudience: { count: 0, hasAsked: false },
             };
 
         default:
@@ -255,6 +262,7 @@ const reducer = (state: InitialState, action: Action): InitialState => {
 function App() {
     const [
         {
+            nextQuestions,
             answeredQuestions,
             currentQuestion,
             optionClicked,
@@ -270,6 +278,21 @@ function App() {
     ] = useReducer(reducer, initState);
     const answeredQuestionsLength = answeredQuestions.length;
     const prizeValue = prizes[answeredQuestionsLength - 1];
+
+    useEffect(() => {
+        // get next game questions
+        asyncFunc()
+            .then((res) => {
+                if (Array.isArray(res)) {
+                    const games: [QuestionT[]] = JSON.parse(
+                        localStorage.getItem("quizGames") ?? `[${questionData}]`
+                    );
+                    games.push(res);
+                    localStorage.setItem("quizGames", JSON.stringify(games));
+                }
+            })
+            .catch((e) => console.log(e));
+    }, [nextQuestions]);
 
     return (
         <div
@@ -326,7 +349,11 @@ function App() {
                             answeredQuestionsLength={answeredQuestionsLength}
                             dispatch={dispatch}
                         />
-                        <Progress correctQsLength={answeredQuestionsLength} />
+                        <Progress
+                            correctQsLength={answeredQuestionsLength}
+                            currentQuestion={currentQuestion}
+                            dispatch={dispatch}
+                        />
                         <Prizes correctQsLength={answeredQuestionsLength} />
                         <Question question={currentQuestion} />
                         <Answers

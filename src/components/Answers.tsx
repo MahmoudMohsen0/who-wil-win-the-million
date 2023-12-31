@@ -1,4 +1,5 @@
 import { AnswerProps } from "../lib/Types";
+import AnswerTimer from "./AnswerTimer";
 import Field from "./Field";
 
 function Answers({
@@ -13,6 +14,12 @@ function Answers({
 
     return (
         <div className="answers">
+            <AnswerTimer
+                myClassesNames="answers__timer-absolute-center"
+                classAnimation="bg-danger"
+                syncWith={question}
+                dispatch={dispatch}
+            />
             {question.options.map((option, i) => {
                 return (
                     <Field

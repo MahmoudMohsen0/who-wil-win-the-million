@@ -63,6 +63,11 @@ body {
     position: relative;
 }
 
+.animation.danger {
+    animation: upAndDown 0.2s linear 2;
+    color: var(--clr-red-500);
+}
+
 svg {
     width: 100%;
 }
@@ -160,19 +165,6 @@ svg {
     background-color: var(--clr-green-300);
 }
 
-@keyframes upAndDown {
-    25% {
-        transform: translateY(-10px);
-    }
-    75% {
-        transform: translateY(10px);
-    }
-    50%,
-    100% {
-        transform: translateY(0);
-    }
-}
-
 .bg-setting-btn {
     background-color: var(--clr-white);
 }
@@ -210,6 +202,13 @@ progress::-webkit-progress-bar {
 }
 progress::-webkit-progress-value {
     background-color: var(--clr-red-500);
+}
+
+.progress__info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
 }
 
 .progress-section p {
@@ -317,42 +316,6 @@ progress::-webkit-progress-value {
     animation: show 0.5s ease-out 5.5s both;
 }
 
-@keyframes goUp {
-    0% {
-        transform: translateY(100%);
-    }
-    100% {
-        transform: translate(0%);
-    }
-}
-
-@keyframes fillWidthAndHeight {
-    0% {
-        transform: scale(0);
-    }
-    90% {
-        transform: scale(1);
-    }
-}
-
-@keyframes scaleDown {
-    90% {
-        transform: scale(1);
-    }
-    100% {
-        transform: scale(0);
-    }
-}
-
-@keyframes show {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
 /* Modal Call a friend*/
 .ModalCall .modal__content {
     flex-direction: column;
@@ -368,7 +331,7 @@ progress::-webkit-progress-value {
     padding: 1.5em;
 }
 
-.ModalCall .modal__content .progress-section p {
+.ModalCall .modal__content .progress-section .progress__info {
     display: none;
 }
 .ModalCall h2 {
@@ -581,6 +544,7 @@ progress::-webkit-progress-value {
     grid-area: a;
     display: flex;
     flex-wrap: wrap;
+    position: relative;
 }
 
 .answers .field {
@@ -622,15 +586,20 @@ progress::-webkit-progress-value {
     animation: fadeOut 1s ease-in both;
 }
 
-@keyframes fadeOut {
-    from {
-        opacity: 1;
-        translate: 0 0 0;
-    }
-    to {
-        opacity: 0;
-        translate: 0% 0% -1000px;
-    }
+.answers__time {
+    color: var(--primary-dark-blue);
+    font-weight: 600;
+    transition: all 300ms;
+}
+
+.answers__time span {
+    margin-left: 0.25em;
+    margin-right: 0.25em;
+    letter-spacing: 1px;
+}
+
+.answers__timer-absolute-center {
+    display: none;
 }
 
 .answers .field.toggleSuccess .answer-btn__bg-svg {
@@ -639,42 +608,6 @@ progress::-webkit-progress-value {
 
 .answers .field.toggleDanger .answer-btn__bg-svg {
     animation: toggleDanger 0.5s ease-in both;
-}
-
-@keyframes toggleSuccess {
-    10%,
-    20%,
-    40%,
-    60%,
-    80% {
-        fill: var(--clr-green-300);
-    }
-
-    0%,
-    30%,
-    50%,
-    70%,
-    100% {
-        fill: var(--secondary-light-blue);
-    }
-}
-
-@keyframes toggleDanger {
-    20%,
-    40%,
-    60%,
-    80% {
-        fill: var(--clr-red-300);
-    }
-
-    0%,
-    10%,
-    30%,
-    50%,
-    70%,
-    100% {
-        fill: var(--secondary-light-blue);
-    }
 }
 
 /* ============================ Footer Section ================================ */
@@ -718,30 +651,6 @@ progress::-webkit-progress-value {
     color: var(--clr-red-500);
     text-shadow: 2px 3px var(--clr-yellow-500);
     animation: rotateScalo 2s ease infinite;
-}
-
-@keyframes rotateScalo {
-    30% {
-        transform: scale(1.1);
-        color: var(--clr-green-300);
-    }
-    40%,
-    60% {
-        transform: rotate(-20deg) scale(1.1);
-        color: var(--clr-red-500);
-    }
-    50% {
-        transform: rotate(20deg) scale(1.1);
-        color: var(--clr-yellow-300);
-    }
-    70% {
-        transform: rotate(0deg) scale(1.1);
-        color: var(--secondary-light-blue);
-    }
-    100% {
-        transform: scale(1);
-        color: var(--primary-dark-blue);
-    }
 }
 
 /* Player Lost */
@@ -918,6 +827,17 @@ progress::-webkit-progress-value {
     }
 }
 
+@media only screen and (min-height: 800px) and (min-width: 1000px) {
+    .wrapper {
+        background-color: var(--clr-Dark-sky-blue);
+    }
+    .container {
+        align-self: center;
+        background-color: var(--clr-Dark-sky-blue);
+        gap: 1rem 3rem;
+    }
+}
+
 /* Desktop */
 @media (min-width: 992px) {
     .container {
@@ -929,6 +849,23 @@ progress::-webkit-progress-value {
     .progress-section {
         display: none;
     }
+    .answers__timer-absolute-center {
+        display: block;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        background-color: var(--clr-yellow-500);
+        padding: 1em;
+        border-radius: 50px;
+        border-radius: 15px;
+    }
+    .animation.bg-danger {
+        animation: upAndDownAbsolute 0.2s linear 2;
+        background-color: var(--clr-red-500);
+        color: var(--clr-gray-300);
+    }
+
     .prizes {
         display: flex;
         flex-direction: column-reverse;
@@ -943,7 +880,6 @@ progress::-webkit-progress-value {
         grid-area: 2 / 1 / span 1 / 2;
         display: block;
         justify-self: center;
-        margin-top: 3.5rem;
     }
     .question .field h3 {
         padding-top: 0px;
@@ -951,5 +887,139 @@ progress::-webkit-progress-value {
     }
     .answers {
         grid-area: 3/ 1 / span 2 / 2;
+    }
+}
+
+/* Animations */
+@keyframes goUp {
+    0% {
+        transform: translateY(100%);
+    }
+    100% {
+        transform: translate(0%);
+    }
+}
+
+@keyframes upAndDown {
+    25% {
+        transform: translate(0, -10px);
+    }
+    75% {
+        transform: translate(0, 10px);
+    }
+    50%,
+    100% {
+        transform: translate(0, 0);
+    }
+}
+
+@keyframes upAndDownAbsolute {
+    25% {
+        transform: translate(-50%, calc(-50% - 10px));
+    }
+    75% {
+        transform: translate(-50%, calc(-50% + 10px));
+    }
+    50%,
+    100% {
+        transform: translate(-50%, -50%);
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        translate: 0 0 0;
+    }
+    to {
+        opacity: 0;
+        translate: 0% 0% -1000px;
+    }
+}
+
+@keyframes fillWidthAndHeight {
+    0% {
+        transform: scale(0);
+    }
+    90% {
+        transform: scale(1);
+    }
+}
+
+@keyframes scaleDown {
+    90% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(0);
+    }
+}
+
+@keyframes show {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes toggleSuccess {
+    10%,
+    20%,
+    40%,
+    60%,
+    80% {
+        fill: var(--clr-green-300);
+    }
+
+    0%,
+    30%,
+    50%,
+    70%,
+    100% {
+        fill: var(--secondary-light-blue);
+    }
+}
+
+@keyframes toggleDanger {
+    20%,
+    40%,
+    60%,
+    80% {
+        fill: var(--clr-red-300);
+    }
+
+    0%,
+    10%,
+    30%,
+    50%,
+    70%,
+    100% {
+        fill: var(--secondary-light-blue);
+    }
+}
+
+@keyframes rotateScalo {
+    30% {
+        transform: scale(1.1);
+        color: var(--clr-green-300);
+    }
+    40%,
+    60% {
+        transform: rotate(-20deg) scale(1.1);
+        color: var(--clr-red-500);
+    }
+    50% {
+        transform: rotate(20deg) scale(1.1);
+        color: var(--clr-yellow-300);
+    }
+    70% {
+        transform: rotate(0deg) scale(1.1);
+        color: var(--secondary-light-blue);
+    }
+    100% {
+        transform: scale(1);
+        color: var(--primary-dark-blue);
     }
 }
