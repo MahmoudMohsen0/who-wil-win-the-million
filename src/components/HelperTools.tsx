@@ -1,10 +1,10 @@
 import Button from "./Button";
-import FiftyChance from "../assets/50.svg?react";
-import NoAudio from "../assets/No_Audio.svg?react";
-import Call from "../assets/call.svg?react";
-import People from "../assets/People.svg?react";
-import Audio from "../assets/audio.svg?react";
-import Withdraw from "../assets/withdraw.svg?react";
+import FiftyChance from "../../public/assets/50.svg?react";
+import NoAudio from "../../public/assets/No_Audio.svg?react";
+import Call from "../../public/assets/call.svg?react";
+import People from "../../public/assets/People.svg?react";
+import Audio from "../../public/assets/audio.svg?react";
+import Withdraw from "../../public/assets/withdraw.svg?react";
 import { HelperToolsProps, MyDispatch } from "../lib/Types";
 
 const trigerAfterSeconds = (num: number, myDispatch: MyDispatch) => {
@@ -54,7 +54,7 @@ function HelperTools({
             audio: {
                 bgIsOn: false,
                 effectIsOn: audio.appAudioIsOn,
-                effectSrc: "../src/sounds/phone-a-friend.mp3",
+                effectSrc: "sounds/phone-a-friend.mp3",
             },
         });
     };

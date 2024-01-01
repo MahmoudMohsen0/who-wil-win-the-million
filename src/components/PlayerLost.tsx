@@ -5,7 +5,7 @@ function PlayerLost({ dispatch }: { dispatch: MyDispatch }) {
     useEffect(() => {
         dispatch({
             type: "changeBackgroundAudioTo",
-            audio: { bgSrc: "../src/sounds/loser-page.mp3" },
+            audio: { bgSrc: "sounds/loser-page.mp3" },
         });
     }, [dispatch]);
 

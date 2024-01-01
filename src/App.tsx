@@ -55,7 +55,7 @@ const initState: InitialState = {
     audio: {
         appAudioIsOn: false,
         backgroundAudioIsOn: false,
-        backgroundAudioSrc: "../src/sounds/background-audio.mp3",
+        backgroundAudioSrc: "sounds/background-audio.mp3",
         effectsAudioIsOn: false,
         effectsAudioSrc: "",
     },
@@ -170,7 +170,7 @@ const reducer = (state: InitialState, action: Action): InitialState => {
                 },
                 audio: {
                     ...playEffect,
-                    effectsAudioSrc: "../src/sounds/ask-the-audience.mp3",
+                    effectsAudioSrc: "sounds/ask-the-audience.mp3",
                 },
             };
 
@@ -203,7 +203,7 @@ const reducer = (state: InitialState, action: Action): InitialState => {
                 },
                 audio: {
                     ...playEffect,
-                    effectsAudioSrc: "../src/sounds/50-50.mp3",
+                    effectsAudioSrc: "sounds/50-50.mp3",
                 },
             };
 

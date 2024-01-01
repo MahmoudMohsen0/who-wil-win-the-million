@@ -12,7 +12,7 @@ function PlayerWon({
     useEffect(() => {
         dispatch({
             type: "changeBackgroundAudioTo",
-            audio: { bgSrc: "../src/sounds/winner-page.mp3" },
+            audio: { bgSrc: "sounds/winner-page.mp3" },
         });
         const duration = 1 * 1000;
         const end = Date.now() + duration;
