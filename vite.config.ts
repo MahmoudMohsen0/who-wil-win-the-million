@@ -8,4 +8,5 @@ export default defineConfig({
         port: 7000,
         host: "0.0.0.0",
     },
+    base: "/who-will-win-the-million/",
 });

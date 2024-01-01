@@ -60,7 +60,6 @@ const initState: InitialState = {
         effectsAudioSrc: "",
     },
 };
-// const gameQuestionsOnReset: QuestionT[] = currentGameQuestion();
 
 const reducer = (state: InitialState, action: Action): InitialState => {
     let answeredIndex;
@@ -238,13 +237,23 @@ const reducer = (state: InitialState, action: Action): InitialState => {
             };
 
         case "reset":
-            console.log("reseted");
             nextGameQuestions = currentGameQuestion();
             return {
-                ...initState,
+                answeredQuestions: [],
+                optionClicked: "",
+                didUserWin: false,
+                gameFinished: false,
+                withdraw: false,
+                askTheAudience: { hasAsked: false, count: 0 },
+                deleteTwoOptions: {
+                    hasDeleted: false,
+                    count: 0,
+                    firstOption: null,
+                    secondOption: null,
+                },
+                callYourFriend: { hasAsked: false, isOpen: false },
                 nextQuestions: nextGameQuestions,
                 currentQuestion: nextGameQuestions[0],
-                callYourFriend: { hasAsked: false, isOpen: false },
                 audio: {
                     ...state.audio,
                     backgroundAudioIsOn: state.audio.appAudioIsOn,

@@ -25,9 +25,11 @@ function ModalCall({
     const [keysPressed, setKeysPressed] = useState({
         ArrowRight: false,
         ArrowLeft: false,
+        touch: false,
     });
     const [countKeyRightAndLeftPressed, setCountKeyRightAndLeftPressed] =
         useState(0);
+    const [countTouched, setCountTouched] = useState(0);
     const [timeoutId, setTimeoutId] = useState<number | null>(null);
     const [bothClicked, setBothClicked] = useState(false);
     const [innerWidth, setInnerWidth] = useState<number | null>(null);
@@ -60,7 +62,7 @@ function ModalCall({
     }, [timeoutId]);
 
     const clearKeysPressed = () => {
-        setKeysPressed({ ArrowRight: false, ArrowLeft: false });
+        setKeysPressed({ ArrowRight: false, ArrowLeft: false, touch: false });
         setBothClicked(false);
     };
 
@@ -132,12 +134,25 @@ function ModalCall({
             setCountKeyRightAndLeftPressed((prev) => prev + 1);
             setBothClicked(true);
         }
+        if (keysPressed.touch) {
+            setCountTouched((prev) => prev + 1);
+        }
     }, [keysPressed]);
 
     useEffect(() => setInnerWidth(window.innerWidth), []);
 
-    const playerWin = !(time <= 0) && countKeyRightAndLeftPressed >= 140;
-    const playerLost = time <= 0 && countKeyRightAndLeftPressed < 140;
+    let playerWin: boolean = false;
+    let playerLost: boolean = false;
+    const targetPressed = 60;
+    if (innerWidth && innerWidth > 1000) {
+        playerWin =
+            !(time <= 0) && countKeyRightAndLeftPressed >= targetPressed;
+        playerLost = time <= 0 && countKeyRightAndLeftPressed < targetPressed;
+    }
+    if (innerWidth && innerWidth <= 1000) {
+        playerWin = !(time <= 0) && countTouched >= targetPressed;
+        playerLost = time <= 0 && countTouched < targetPressed;
+    }
 
     useEffect(() => {
         if ((playerWin || playerLost) && firstMount.current <= 1) {
@@ -212,32 +227,43 @@ function ModalCall({
                         <>
                             <Timer time={time} setTime={setTime} />
                             <Progress
-                                correctQsLength={countKeyRightAndLeftPressed}
-                                max={140}
+                                correctQsLength={
+                                    countKeyRightAndLeftPressed || countTouched
+                                }
+                                max={targetPressed}
                                 dispatch={dispatch}
                             />
                             <h2>
                                 {innerWidth && innerWidth > 1000
-                                    ? "اضغظ علي زرار اليمين و اليسار في نفس الوقت علي الكيبورد"
-                                    : "اضغظ علي زرار اليمين و اليسار في نفس الوقت"}
+                                    ? "اضغط علي زرار اليمين و اليسار في نفس الوقت علي الكيبورد لتعرف الاجابة"
+                                    : "اضغط علي الزرار لتعرف الاجابة"}
                             </h2>
                             <div className="btns">
-                                <KeyDownBtn
-                                    name="زرار اليمين"
-                                    isDown={
-                                        bothClicked
-                                            ? true
-                                            : keysPressed.ArrowRight
-                                    }
-                                />
-                                <KeyDownBtn
-                                    name="زرار اليسار"
-                                    isDown={
-                                        bothClicked
-                                            ? true
-                                            : keysPressed.ArrowLeft
-                                    }
-                                />
+                                {innerWidth && innerWidth > 1000 ? (
+                                    <>
+                                        <KeyDownBtn
+                                            name="زرار اليمين"
+                                            isDown={
+                                                bothClicked
+                                                    ? true
+                                                    : keysPressed.ArrowRight
+                                            }
+                                        />
+                                        <KeyDownBtn
+                                            name="زرار اليسار"
+                                            isDown={
+                                                bothClicked
+                                                    ? true
+                                                    : keysPressed.ArrowLeft
+                                            }
+                                        />
+                                    </>
+                                ) : (
+                                    <KeyDownBtn
+                                        name="اتصل بصديقك"
+                                        isDown={keysPressed.touch}
+                                    />
+                                )}
                             </div>
                         </>
                     )}

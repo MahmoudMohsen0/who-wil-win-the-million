@@ -283,11 +283,11 @@ progress::-webkit-progress-value {
 }
 
 .people.modal {
-    animation: fillWidthAndHeight 5s ease-in both, scaleDown 8.5s ease-in both;
+    animation: fillWidthAndHeight 1s ease-in both, scaleDown 8.5s ease-in both;
 }
 
 .people .modal__content {
-    animation: fillWidthAndHeight 5s ease 3s both, scaleDown 9s ease both;
+    animation: fillWidthAndHeight 4s ease 3s both, scaleDown 9s ease both;
 }
 
 .friend.modal {
@@ -518,7 +518,7 @@ progress::-webkit-progress-value {
 }
 
 .question .field h3 {
-    font-size: 1.5rem;
+    font-size: 1rem;
     max-width: 17ch;
     text-align: center;
     right: 15%;
@@ -721,7 +721,7 @@ progress::-webkit-progress-value {
         width: 4em;
     }
     .question .field h3 {
-        font-size: clamp(2.5rem, 1rem + 2vw, 3rem);
+        font-size: clamp(1.5rem, 1rem + 2vw, 2.5rem);
         right: 15%;
         max-width: 70%;
     }

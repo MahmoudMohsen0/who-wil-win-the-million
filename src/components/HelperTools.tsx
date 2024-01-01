@@ -76,9 +76,7 @@ function HelperTools({
             <div className="hints">
                 <Button
                     handleFunc={handlePeople}
-                    disabled={
-                        askTheAudience?.count > 1 || askTheAudience.hasAsked
-                    }
+                    disabled={askTheAudience.hasAsked}
                 >
                     <People />
                 </Button>

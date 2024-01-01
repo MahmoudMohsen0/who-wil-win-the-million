@@ -390,7 +390,7 @@ export const allQuestions: QuestionT[] = [
     {
         id: "o-56",
         question: "ما هو الشيء الذي تموت إذا أكلته؟",
-        options: ["النار", "الكتاب", "الموز", "الماء"],
+        options: ["النار", "رغيف الخبز", "الموز", "الماء"],
         correct: 2,
     },
     {
