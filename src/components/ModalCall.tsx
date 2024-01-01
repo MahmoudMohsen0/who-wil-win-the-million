@@ -164,7 +164,7 @@ function ModalCall({
                     audio: {
                         bgIsOn: false,
                         effectIsOn: audio.appAudioIsOn,
-                        effectSrc: `../src/sounds/answer-${
+                        effectSrc: `sounds/answer-${
                             currentQuestion.correct + 1
                         }.mp3`,
                     },
