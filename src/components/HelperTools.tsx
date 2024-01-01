@@ -1,10 +1,10 @@
 import Button from "./Button";
-import FiftyChance from "../../public/assets/50.svg?react";
-import NoAudio from "../../public/assets/No_Audio.svg?react";
-import Call from "../../public/assets/call.svg?react";
-import People from "../../public/assets/People.svg?react";
-import Audio from "../../public/assets/audio.svg?react";
-import Withdraw from "../../public/assets/withdraw.svg?react";
+import FiftyChance from "/src/assets/50.svg?react";
+import NoAudio from "/src/assets/No_Audio.svg?react";
+import Call from "/src/assets/call.svg?react";
+import People from "/src/assets/People.svg?react";
+import Audio from "/src/assets/audio.svg?react";
+import Withdraw from "/src/assets/withdraw.svg?react";
 import { HelperToolsProps, MyDispatch } from "../lib/Types";
 
 const trigerAfterSeconds = (num: number, myDispatch: MyDispatch) => {

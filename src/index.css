@@ -35,6 +35,12 @@ body {
     font-family: var(--font-primary);
 }
 
+button,
+div {
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+}
+
 .wrapper {
     display: grid;
     grid-template-rows: auto 1fr auto;
