@@ -179,7 +179,7 @@ function ModalCall({
                                 effectIsOn: false,
                             },
                         }),
-                    15000
+                    16000
                 );
             }
             if (playerLost) {

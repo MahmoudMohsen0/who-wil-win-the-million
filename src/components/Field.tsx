@@ -9,17 +9,22 @@ function Field({
     deleteThisOption,
     isQuestion = false,
     dispatch,
-}: 
-FieldProps) {
-    const isCorrect = question.correct === index;
+}: FieldProps) {
+    const correctAnswer = question.correct === index;
     const id = typeof index === "number" ? `o-${index}` : "questionField";
-    const isClicked = clicked === id;
+    const isUserAnsweredCorrectly = clicked === id;
 
-    const correctOrWrongAnimation = !isClicked
-        ? ""
-        : isCorrect
-        ? "toggleSuccess"
-        : "toggleDanger";
+    let correctOrWrongAnimation = "";
+
+    if (isUserAnsweredCorrectly && correctAnswer) {
+        correctOrWrongAnimation = "toggleSuccess";
+    }
+    if (isUserAnsweredCorrectly && !correctAnswer) {
+        correctOrWrongAnimation = "toggleDanger";
+    }
+    if (clicked && clicked !== id && correctAnswer) {
+        correctOrWrongAnimation = "toggleSuccess";
+    }
 
     const headingClassName = deleteThisOption ? "fadeOut" : "";
     function handleClicked(id: string, src?: string) {
@@ -37,7 +42,7 @@ FieldProps) {
             onClick={() => {
                 if ((!handleClicked && isQuestion) || !dispatch) return;
 
-                if (isCorrect && !deleteThisOption) {
+                if (correctAnswer && !deleteThisOption) {
                     handleClicked(id, "sounds/right-answer.mp3");
 
                     setTimeout(() => {
@@ -47,7 +52,7 @@ FieldProps) {
                         });
                     }, 500);
                 }
-                if (!isCorrect && !deleteThisOption) {
+                if (!correctAnswer && !deleteThisOption) {
                     handleClicked(id, "sounds/wrong-answer.mp3");
 
                     setTimeout(() => {
