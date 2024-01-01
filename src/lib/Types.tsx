@@ -31,7 +31,7 @@ export type InitialState = {
     didUserWin: boolean;
     gameFinished: boolean;
     withdraw: boolean;
-    askTheAudience: { hasAsked: boolean; count: number };
+    askTheAudience: { hasAsked: boolean; isOpen: boolean };
     deleteTwoOptions: {
         hasDeleted: boolean;
         firstOption: number | null;
@@ -68,7 +68,7 @@ export type AudioT = {
 export type HelperToolsProps = {
     withdraw: boolean;
     answeredQuestionsLength: number;
-    askTheAudience: { hasAsked: boolean; count: number };
+    askTheAudience: { hasAsked: boolean; isOpen: boolean };
     deleteTwoOptions: {
         hasDeleted: boolean;
         firstOption: null | number;
@@ -100,6 +100,17 @@ export type AnswerProps = {
         count: number;
     };
     dispatch: MyDispatch;
+};
+
+export type ModalProps = {
+    correctIndex: number;
+    deleteTwoOptions: {
+        hasDeleted: boolean;
+        firstOption: null | number;
+        secondOption: null | number;
+        count: number;
+    };
+    askTheAudience: { hasAsked: boolean; isOpen: boolean };
 };
 
 export type ModalCallProps = {

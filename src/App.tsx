@@ -44,7 +44,7 @@ const initState: InitialState = {
     didUserWin: false,
     gameFinished: false,
     withdraw: false,
-    askTheAudience: { hasAsked: false, count: 0 },
+    askTheAudience: { hasAsked: false, isOpen: false },
     deleteTwoOptions: {
         hasDeleted: false,
         count: 0,
@@ -166,7 +166,7 @@ const reducer = (state: InitialState, action: Action): InitialState => {
                 ...state,
                 askTheAudience: {
                     hasAsked: true,
-                    count: state.askTheAudience.count++,
+                    isOpen: action?.OpenTarget ?? false,
                 },
                 audio: {
                     ...playEffect,
@@ -244,7 +244,7 @@ const reducer = (state: InitialState, action: Action): InitialState => {
                 didUserWin: false,
                 gameFinished: false,
                 withdraw: false,
-                askTheAudience: { hasAsked: false, count: 0 },
+                askTheAudience: { hasAsked: false, isOpen: false },
                 deleteTwoOptions: {
                     hasDeleted: false,
                     count: 0,

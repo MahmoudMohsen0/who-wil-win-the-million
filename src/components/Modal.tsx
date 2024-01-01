@@ -1,14 +1,5 @@
 import { mixRandomWithCorrectIndex } from "../global functions/globalFunctions";
-type ModalProps = {
-    correctIndex: number;
-    deleteTwoOptions: {
-        hasDeleted: boolean;
-        firstOption: null | number;
-        secondOption: null | number;
-        count: number;
-    };
-    askTheAudience: { hasAsked: boolean; count: number };
-};
+import { ModalProps } from "../lib/Types";
 
 function Modal({ correctIndex, deleteTwoOptions, askTheAudience }: ModalProps) {
     const mixed = mixRandomWithCorrectIndex(
@@ -21,7 +12,7 @@ function Modal({ correctIndex, deleteTwoOptions, askTheAudience }: ModalProps) {
     const [a, b, c, d] = mixed;
 
     const isOpen =
-        askTheAudience.hasAsked && askTheAudience.count === 1 ? "open" : "";
+        askTheAudience.hasAsked && askTheAudience.isOpen ? "open" : "";
 
     return (
         <div className={`modal ${isOpen} ${isOpen ? "people" : ""}`}>

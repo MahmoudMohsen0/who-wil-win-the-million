@@ -38,7 +38,7 @@ function HelperTools({
         }
     };
     const handlePeople = () => {
-        dispatch({ type: "askTheAudience" });
+        dispatch({ type: "askTheAudience", OpenTarget: true });
         trigerAfterSeconds(9000, dispatch);
     };
     const handleFiftyChance = () => {
