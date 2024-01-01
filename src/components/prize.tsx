@@ -4,7 +4,7 @@ import { faStar } from "@fortawesome/free-solid-svg-icons/faStar";
 // import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 
 type prizeProps = {
-    value: number;
+    value: string;
     index: number;
     clrYellow?: boolean;
     correctQsLength: number;
