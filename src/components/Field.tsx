@@ -9,7 +9,7 @@ function Field({
     deleteThisOption,
     isQuestion = false,
     dispatch,
-}: // handleClicked,
+}: 
 FieldProps) {
     const isCorrect = question.correct === index;
     const id = typeof index === "number" ? `o-${index}` : "questionField";
@@ -20,18 +20,6 @@ FieldProps) {
         : isCorrect
         ? "toggleSuccess"
         : "toggleDanger";
-
-    // console.log(deleteThisOption);
-    // if (correctOrWrongAnimation === "toggleSuccess") {
-    //     if (dispatch) {
-    //         dispatch({
-    //             type: "toggleOnOffSounds",
-    //             audio: { src: "../src/right.mp3" },
-    //         });
-    //     }
-    // }
-    // if (correctOrWrongAnimation === "toggleDanger") {
-    // }
 
     const headingClassName = deleteThisOption ? "fadeOut" : "";
     function handleClicked(id: string, src?: string) {
@@ -50,7 +38,7 @@ FieldProps) {
                 if ((!handleClicked && isQuestion) || !dispatch) return;
 
                 if (isCorrect && !deleteThisOption) {
-                    handleClicked(id, "../src/sounds/right-answer.mp3");
+                    handleClicked(id, "sounds/right-answer.mp3");
 
                     setTimeout(() => {
                         dispatch({
@@ -60,7 +48,7 @@ FieldProps) {
                     }, 500);
                 }
                 if (!isCorrect && !deleteThisOption) {
-                    handleClicked(id, "../src/sounds/wrong-answer.mp3");
+                    handleClicked(id, "sounds/wrong-answer.mp3");
 
                     setTimeout(() => {
                         dispatch({

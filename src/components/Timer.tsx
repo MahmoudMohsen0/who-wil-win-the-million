@@ -16,7 +16,6 @@ function Timer({
         const initialTime = Date.now();
         const futureTime = initialTime + seconds;
         const fiveSeconds = 5000;
-        // let remainSeconds = 5;
 
         const intervalId = setInterval(() => {
             const timeNow = Date.now();
@@ -55,7 +54,6 @@ function Timer({
 
         return () => {
             clearInterval(intervalId);
-            // setTime(remainSeconds);
         };
     }, [setTime]);
 

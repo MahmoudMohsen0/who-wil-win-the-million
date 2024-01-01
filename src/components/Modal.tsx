@@ -8,7 +8,6 @@ function Modal({ correctIndex, deleteTwoOptions, askTheAudience }: ModalProps) {
         deleteTwoOptions.secondOption ?? undefined
     );
 
-    // console.log(mixed);
     const [a, b, c, d] = mixed;
 
     const isOpen =
