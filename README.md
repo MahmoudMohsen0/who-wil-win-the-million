@@ -27,9 +27,9 @@ Each game has a set of lifelines to assist the player with the questions. In the
 
 -   **Phone a Friend:**
 
-    -   The timer starts as soon as The player click on phone a friend button , The player is given 30 seconds to press (rightArrow key and leftArrow key on the keyboard)[on desktop] or (touch the button) [on mobile or tablet devices] to fill the bar to the end
+    -   The timer starts as soon as The player clicks on the friend button, The player is given 30 seconds to press (the right key and the left key on the keyboard)[on desktop] or (touch the button) [on mobile or tablet devices] to fill the bar to the end
     -   if the player enabled the audio it will play the answer when reaching the target bar
-    -   if the player muted the audio it will display the correct answer on the screen
+    -   if the player mutes the audio it will display the correct answer on the screen
 
 -   **Ask the Audience:**
     -   The app tallies the results and displays them as percentages to the player.
@@ -40,7 +40,7 @@ Each game has a set of lifelines to assist the player with the questions. In the
 
 ### Questions
 
-This game consist of 195 Questions every game has unique set of quesitons
+This game consists of 195 Questions every game has a unique set of questions
 
 ## Try it Live!
 
