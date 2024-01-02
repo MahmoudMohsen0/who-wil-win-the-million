@@ -19,7 +19,7 @@ An interactive web-based quiz game inspired by the popular TV show "Who Wants to
 
 ### Lifelines
 
-Each game has a set of lifelines to assist the player with questions. In the standard format, each game has three lifelines, and each lifeline can be used only once per game. It's also possible to use more than one lifeline on a single question. The standard lifelines used in the original format of the game show include:
+Each game has a set of lifelines to assist the player with the questions. In the standard format, each game has three lifelines, and each lifeline can be used only once per game. It's also possible to use more than one lifeline on a single question. The standard lifelines used in the original format of the game show include:
 
 -   **50:50 (Fifty-Fifty):**
 
@@ -27,7 +27,7 @@ Each game has a set of lifelines to assist the player with questions. In the sta
 
 -   **Phone a Friend:**
 
-    -   The timer starts as soon as The player click on phone a friend button , The player is given 30 seconds to press (rightArrow key and leftArrow key on the keyboard)[on desktop] or (touch the button) [on mobile or tablet devices] to fill the bar to the end and
+    -   The timer starts as soon as The player click on phone a friend button , The player is given 30 seconds to press (rightArrow key and leftArrow key on the keyboard)[on desktop] or (touch the button) [on mobile or tablet devices] to fill the bar to the end
     -   if the player enabled the audio it will play the answer when reaching the target bar
     -   if the player muted the audio it will display the correct answer on the screen
 
@@ -51,7 +51,7 @@ Check out the live app [Who Will Win the Million](https://mahmoudmohsen0.github.
 1. Clone this repository.
 
     ```bash
-    git clone https://github.com/your-username/who-will-win-the-million.git
+    git clone https://github.com/MahmoudMohsen0/who-will-win-the-million.git
     ```
 
 2. Navigate to the Project Directory:
