@@ -1,30 +1,98 @@
-# React + TypeScript + Vite
+# Who will win the Million
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+An interactive web-based quiz game inspired by the popular TV show "Who Wants to Be a Millionaire."
 
-Currently, two official plugins are available:
+## How to Use
 
--   [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
--   [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1. **Answer Questions:**
 
-## Expanding the ESLint configuration
+    - Read each question carefully and select the correct answer from the options provided.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+2. **Progress and Lifelines:**
 
--   Configure the top-level `parserOptions` property like this:
+    - Track your progress as you answer questions and use available lifelines strategically.
 
-```js
-export default {
-    // other rules...
-    parserOptions: {
-        ecmaVersion: "latest",
-        sourceType: "module",
-        project: ["./tsconfig.json", "./tsconfig.node.json"],
-        tsconfigRootDir: __dirname,
-    },
-};
-```
+3. **Winning the Million:**
+    - Keep answering questions correctly to reach the one million mark and emerge as the winner!
 
--   Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
--   Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
--   Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Game Features
+
+### Lifelines
+
+Each game has a set of lifelines to assist the player with questions. In the standard format, each game has three lifelines, and each lifeline can be used only once per game. It's also possible to use more than one lifeline on a single question. The standard lifelines used in the original format of the game show include:
+
+-   **50:50 (Fifty-Fifty):**
+
+    -   The app eliminates two wrong answers from the current question, leaving behind the correct answer and one incorrect answer.
+
+-   **Phone a Friend:**
+
+    -   The timer starts as soon as The player click on phone a friend button , The player is given 30 seconds to press (rightArrow key and leftArrow key on the keyboard)[on desktop] or (touch the button) [on mobile or tablet devices] to fill the bar to the end and
+    -   if the player enabled the audio it will play the answer when reaching the target bar
+    -   if the player muted the audio it will display the correct answer on the screen
+
+-   **Ask the Audience:**
+    -   The app tallies the results and displays them as percentages to the player.
+
+### Withdraw
+
+-   A player can withdraw only when answering questions worth 1,000 or 32,000 points and will be directed to the win page.
+
+### Questions
+
+This game consist of 195 Questions every game has unique set of quesitons
+
+## Try it Live!
+
+Check out the live app [Who Will Win the Million](https://mahmoudmohsen0.github.io/who-will-win-the-million/) and start playing now!
+
+## Getting Started
+
+1. Clone this repository.
+
+    ```bash
+    git clone https://github.com/your-username/who-will-win-the-million.git
+    ```
+
+2. Navigate to the Project Directory:
+    ```bash
+    cd who-will-win-the-million
+    ```
+3. Install Dependencies:
+
+    Using npm
+
+    ```bash
+     npm install
+    ```
+
+    using Yarn:
+
+    ```bash
+    yarn
+    ```
+
+4. Development Server
+
+-   ##### Start the Development Server:
+
+    ```bash
+    npm run dev
+    ```
+
+    OR
+
+    ```bash
+    yarn dev
+    ```
+
+5. Open in your Browser:
+
+    Open your web browser and go to http://localhost:3000 to see the app in action.
+
+Ready to Play!
+Now you have the "Who Will Win the Million" app up and running on your local machine. Start playing and enjoy the quiz!
+
+## Contributing
+
+If you'd like to contribute to the development of this quiz game, feel free to fork the repository, create a new branch for your feature or bug fix, and submit a pull request with a detailed description of your changes.
