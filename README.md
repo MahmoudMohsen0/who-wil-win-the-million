@@ -60,7 +60,7 @@ Check out the live app [Who Will Win the Million](https://mahmoudmohsen0.github.
     ```
 3. Install Dependencies:
 
-    Using npm
+    using npm
 
     ```bash
      npm install
@@ -74,13 +74,13 @@ Check out the live app [Who Will Win the Million](https://mahmoudmohsen0.github.
 
 4. Development Server
 
--   ##### Start the Development Server:
+    ##### Start the Development Server:
 
     ```bash
     npm run dev
     ```
 
-    OR
+    or
 
     ```bash
     yarn dev
