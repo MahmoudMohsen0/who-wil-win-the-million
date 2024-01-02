@@ -2,6 +2,10 @@
 
 An interactive web-based quiz game inspired by the popular TV show "Who Wants to Be a Millionaire."
 
+<img src='./public/preview-demo.png'></img>
+
+Check out the live Demo [Who Will Win the Million](https://mahmoudmohsen0.github.io/who-will-win-the-million/) and start playing now!
+
 ## How to Use
 
 1. **Answer Questions:**
