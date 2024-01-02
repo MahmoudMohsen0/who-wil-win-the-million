@@ -19,26 +19,20 @@ function useAudio(audioSrc: string, isPlaying: boolean) {
             audioRef.current.src = audioSrc;
             audioRef.current.load();
         }
-        const setId = setTimeout(() => {
-            if (audioRef.current && audioSrc && isPlaying) {
-                audioRef.current.play().catch((error) => console.error(error));
-            }
 
-            if (audioRef.current && !isPlaying) {
-                audioRef.current.pause();
-            }
-        }, 50);
-        return () => clearTimeout(setId);
-    }, [audioSrc, isPlaying]);
+        if (audioRef.current && audioSrc && isPlaying) {
+            audioRef.current.play().catch((error) => console.error(error));
+        }
 
-    useEffect(() => {
+        if (audioRef.current && !isPlaying) {
+            audioRef.current.pause();
+        }
+
         return () => {
-            if (audioRef.current) {
-                audioRef.current.pause();
-                audioRef.current = null;
-            }
+            audioRef.current?.pause();
+            audioRef.current = null;
         };
-    }, []);
+    }, [audioSrc, isPlaying]);
 
     return [audioRef];
 }
