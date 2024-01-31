@@ -55,7 +55,7 @@ Check out the live app [Who Will Win the Million](https://mahmoud-mohsen-dev.git
 1. Clone this repository.
 
     ```bash
-    git clone https://github.com/MahmoudMohsen0/who-will-win-the-million.git
+    git clone https://github.com/mahmoud-mohsen-dev/who-will-win-the-million.git
     ```
 
 2. Navigate to the Project Directory:
@@ -83,7 +83,7 @@ Check out the live app [Who Will Win the Million](https://mahmoud-mohsen-dev.git
     Open your web browser and go to http://localhost:3000 to see the app in action.
 
 Ready to Play!
-Now you have the "Who Will Win the Million" app up and running on your local machine. Start playing and enjoy the quiz!
+Now, the "Who Will Win the Million" app is on your local machine. Start playing and enjoy the quiz!
 
 ## Contributing
 
