@@ -4,7 +4,7 @@ An interactive web-based quiz game inspired by the popular TV show "Who Wants to
 
 <img src='./public/preview-demo.png'></img>
 
-Check out the live Demo [Who Will Win the Million](https://mahmoud-mohsen-dev.github.io/who-will-win-the-million/) and start playing now!
+Check out the live Demo [Who Will Win the Million](https://who-will-win-the-million.vercel.app/) and start playing now!
 
 ## How to Use
 
@@ -48,7 +48,7 @@ This game consists of 195 Questions every game has a unique set of questions
 
 ## Try it Live!
 
-Check out the live app [Who Will Win the Million](https://mahmoud-mohsen-dev.github.io/who-will-win-the-million/) and start playing now!
+Check out the live app [Who Will Win the Million](https://who-will-win-the-million.vercel.app/) and start playing now!
 
 ## Getting Started
 
@@ -70,9 +70,7 @@ Check out the live app [Who Will Win the Million](https://mahmoud-mohsen-dev.git
      npm install
     ```
 
-4. Development Server
-
-    ##### Start the Development Server:
+4. Start the Development Server:
 
     ```bash
     npm run dev
@@ -83,7 +81,7 @@ Check out the live app [Who Will Win the Million](https://mahmoud-mohsen-dev.git
     Open your web browser and go to http://localhost:3000 to see the app in action.
 
 Ready to Play!
-Now, the "Who Will Win the Million" app is on your local machine. Start playing and enjoy the quiz!
+Now, the "Who Will Win the Million" game is on your local machine. Start playing and enjoy the quiz!
 
 ## Contributing
 
