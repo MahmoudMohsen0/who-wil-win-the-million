@@ -4,7 +4,7 @@ An interactive web-based quiz game inspired by the popular TV show "Who Wants to
 
 <img src='./public/preview-demo.png'></img>
 
-Check out the live Demo [Who Will Win the Million](https://mahmoudmohsen0.github.io/who-will-win-the-million/) and start playing now!
+Check out the live Demo [Who Will Win the Million](https://mahmoud-mohsen-dev.github.io/who-will-win-the-million/) and start playing now!
 
 ## How to Use
 
@@ -48,14 +48,14 @@ This game consists of 195 Questions every game has a unique set of questions
 
 ## Try it Live!
 
-Check out the live app [Who Will Win the Million](https://mahmoudmohsen0.github.io/who-will-win-the-million/) and start playing now!
+Check out the live app [Who Will Win the Million](https://mahmoud-mohsen-dev.github.io/who-will-win-the-million/) and start playing now!
 
 ## Getting Started
 
 1. Clone this repository.
 
     ```bash
-    git clone https://github.com/MahmoudMohsen0/who-will-win-the-million.git
+    git clone https://github.com/mahmoud-mohsen-dev/who-will-win-the-million.git
     ```
 
 2. Navigate to the Project Directory:
@@ -70,24 +70,12 @@ Check out the live app [Who Will Win the Million](https://mahmoudmohsen0.github.
      npm install
     ```
 
-    using Yarn:
-
-    ```bash
-    yarn
-    ```
-
 4. Development Server
 
     ##### Start the Development Server:
 
     ```bash
     npm run dev
-    ```
-
-    or
-
-    ```bash
-    yarn dev
     ```
 
 5. Open in your Browser:
