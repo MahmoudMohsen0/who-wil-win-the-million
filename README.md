@@ -1,6 +1,6 @@
 # Who will win the Million
 
-An interactive web-based quiz game inspired by the popular TV show "Who Wants to Be a Millionaire."
+> An interactive web-based quiz game inspired by the popular TV show "Who Wants to Be a Millionaire."
 
 <img src='./public/preview-demo.png'></img>
 
